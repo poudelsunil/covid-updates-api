@@ -1,4 +1,4 @@
-package global.sunil.covidupdates.utils;
+package global.sunil.covidupdates.lib.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -26,6 +26,8 @@ COPY --from=build /app/target/libs /home/covidupdates/app/libs
 RUN  chown -Rf covidupdates:covidupdates /home/covidupdates/app
 WORKDIR /home/covidupdates/app
 
+ENV COVID19_SERVICE_URL="https://api.covid19api.com"
+
 CMD ["java", "-jar", "covid-updates-api.jar"]
 
 EXPOSE 8080

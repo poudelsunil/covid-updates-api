@@ -1,4 +1,4 @@
-package global.sunil.covidupdates.utils;
+package global.sunil.covidupdates.lib.utils;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;

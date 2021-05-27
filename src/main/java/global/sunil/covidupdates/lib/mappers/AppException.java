@@ -2,7 +2,7 @@ package global.sunil.covidupdates.lib.mappers;
 
 import global.sunil.covidupdates.lib.exceptions.CovidUpdateException;
 import global.sunil.covidupdates.lib.exceptions.ExceptionType;
-import global.sunil.covidupdates.utils.HelperUtils;
+import global.sunil.covidupdates.lib.utils.HelperUtils;
 
 import javax.json.Json;
 import javax.json.JsonObject;

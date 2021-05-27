@@ -1,6 +1,6 @@
 package global.sunil.covidupdates.lib.filters;
 
-import global.sunil.covidupdates.utils.LoggerUtils;
+import global.sunil.covidupdates.lib.utils.LoggerUtils;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

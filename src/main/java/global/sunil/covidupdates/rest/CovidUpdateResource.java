@@ -1,13 +1,14 @@
 package global.sunil.covidupdates.rest;
 
-import global.sunil.covidupdates.utils.RestResponse;
+import global.sunil.covidupdates.lib.utils.RestResponse;
+import global.sunil.covidupdates.repositories.CovidUpdatesRepository;
+import global.sunil.covidupdates.repositories.dtos.GetCountryWiseCovidInfoRequest;
+import global.sunil.covidupdates.rest.adaptors.GetCountryWiseCovidInfoRequestAdaptor;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,10 +22,35 @@ import javax.ws.rs.core.Response;
 @Named
 public class CovidUpdateResource {
 
+    CovidUpdatesRepository covidUpdatesRepository;
+    GetCountryWiseCovidInfoRequestAdaptor getCountryWiseCovidInfoRequestAdaptor;
+
+    @Inject
+    CovidUpdateResource(CovidUpdatesRepository covidUpdatesRepository,
+                        GetCountryWiseCovidInfoRequestAdaptor getCountryWiseCovidInfoRequestAdaptor){
+        this.covidUpdatesRepository = covidUpdatesRepository;
+        this.getCountryWiseCovidInfoRequestAdaptor = getCountryWiseCovidInfoRequestAdaptor;
+    }
+
     @GET
     @Path("ping")
     public Response ping(){
         return RestResponse.ok();
     }
 
+    @GET
+    @Path("countries")
+    public Response getCountries(){
+
+        return RestResponse.ok(covidUpdatesRepository.getCountries());
+    }
+
+    @GET
+    @Path("country/{countryIso2}")
+    public Response getCountries(@PathParam("countryIso2") String iso2){
+
+        GetCountryWiseCovidInfoRequest request = this.getCountryWiseCovidInfoRequestAdaptor.toServiceObject(null);
+        request.setIso2(iso2);
+        return RestResponse.ok(covidUpdatesRepository.getCountryWiseCovidInfo(request));
+    }
 }

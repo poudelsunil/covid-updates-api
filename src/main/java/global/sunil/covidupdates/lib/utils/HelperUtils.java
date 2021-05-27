@@ -1,5 +1,7 @@
-package global.sunil.covidupdates.utils;
+package global.sunil.covidupdates.lib.utils;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,4 +29,11 @@ public class HelperUtils {
         }
         return true;
     }
+
+    public static double formatNumber(double num) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        return Double.valueOf( df.format(num) );
+    }
+
 }

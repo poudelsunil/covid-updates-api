@@ -1,4 +1,4 @@
-package global.sunil.covidupdates.utils;
+package global.sunil.covidupdates.lib.utils;
 
 import java.util.logging.Logger;
 

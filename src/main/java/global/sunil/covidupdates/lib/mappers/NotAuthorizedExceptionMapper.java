@@ -1,8 +1,8 @@
 package global.sunil.covidupdates.lib.mappers;
 
 
-import global.sunil.covidupdates.utils.LoggerUtils;
-import global.sunil.covidupdates.utils.RestResponse;
+import global.sunil.covidupdates.lib.utils.LoggerUtils;
+import global.sunil.covidupdates.lib.utils.RestResponse;
 
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.MediaType;
