@@ -7,6 +7,7 @@ import global.sunil.covidupdates.repositories.UserRepository;
 import global.sunil.covidupdates.repositories.dao.UserDao;
 import global.sunil.covidupdates.repositories.dao.entites.UserEntity;
 import global.sunil.covidupdates.repositories.dao.entites.UserFilterCriteria;
+import global.sunil.covidupdates.repositories.dao.impl.UserDaoImpl;
 import global.sunil.covidupdates.repositories.dtos.SendEmailRequest;
 import global.sunil.covidupdates.repositories.dtos.SendEmailResponse;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 /**
  * @author Sunil on 2021-05-28 - २१:५२
@@ -28,6 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 class UserRepositoryImplEmailUserTest {
 
     UserRepository userRepository;
+    UserRepository userRepositoryForMailServiceCheck;
 
     @BeforeEach
     void setup() {
@@ -54,7 +55,33 @@ class UserRepositoryImplEmailUserTest {
                         new UserEntity((long) 2, "Hari", "hari@abc.com", null)
                 ));
 
+        UserFilterCriteria userFilterCriteriaWithLargeRecords = new UserFilterCriteria();
+        userFilterCriteriaWithLargeRecords.setSize(null);
+        Mockito.when(userDao.search(userFilterCriteriaWithLargeRecords))
+                .thenReturn(UserDaoImpl.getInitialUserEntities());
+
         userRepository = new UserRepositoryImpl(mailSender, userDao);
+
+        MailSender mailSenderImpl = Mockito.spy(new MailSender() {
+            @Override
+            public String getUserName() {
+                return null;
+            }
+
+            @Override
+            public String getPassword() {
+                return null;
+            }
+
+            @Override
+            public void send(List<String> recipients, String subject,
+                             String message) throws MessagingException {
+
+                throw new MessagingException();
+            }
+
+        });
+        userRepositoryForMailServiceCheck = new UserRepositoryImpl(mailSenderImpl, userDao);
     }
 
     @Test
@@ -83,13 +110,13 @@ class UserRepositoryImplEmailUserTest {
     }
 
     @Test
-    @DisplayName("Should throw Could not get countries. exception")
-    void shouldThrowCouldNotGetCountries() {
+    @DisplayName("Should throw Could not found any users exception")
+    void shouldThrowCouldNotFoundUsers() {
 
         SendEmailRequest sendEmailRequest = new SendEmailRequest();
         sendEmailRequest.setSubject("Hi");
         sendEmailRequest.setMessage("How are you?");
-        sendEmailRequest.setCount(2);
+        sendEmailRequest.setCount(100);
         AppException exception =
                 assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
         Assertions.assertEquals(
@@ -104,9 +131,9 @@ class UserRepositoryImplEmailUserTest {
         SendEmailRequest sendEmailRequest = new SendEmailRequest();
         sendEmailRequest.setSubject("Hi");
         sendEmailRequest.setMessage("How are you?");
-        sendEmailRequest.setCount(100);  // mocking to to return user if count is 100
+        sendEmailRequest.setCount(2);
         AppException exception =
-                assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
+                assertThrows(AppException.class, () -> userRepositoryForMailServiceCheck.sendEmails(sendEmailRequest));
         Assertions.assertEquals(
                 ExceptionManager.UserError.COULD_NOT_SEND_EMAIL.getDescription(),
                 exception.getMessage());
@@ -148,5 +175,18 @@ class UserRepositoryImplEmailUserTest {
         SendEmailResponse sendEmailResponse = userRepository.sendEmails(sendEmailRequest);
         assertEquals(1, sendEmailResponse.getUsersWithInvalidEmail().size());
         assertEquals("ram@2131@abc.com", sendEmailResponse.getUsersWithInvalidEmail().get(0).getEmail());
+    }
+
+    @Test
+    @DisplayName("Should get success response ")
+    void successForLargeNumber() {
+
+        SendEmailRequest sendEmailRequest = new SendEmailRequest();
+        sendEmailRequest.setSubject("Hi");
+        sendEmailRequest.setMessage("How are you?");
+        sendEmailRequest.setCount(null);
+        SendEmailResponse sendEmailResponse = userRepository.sendEmails(sendEmailRequest);
+        assertEquals(2, sendEmailResponse.getUsersWithInvalidEmail().size());
+        assertEquals(60, sendEmailResponse.getUsersWithValidEmail().size());
     }
 }
