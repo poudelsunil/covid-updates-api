@@ -13,13 +13,17 @@ import java.util.Set;
  * @author Sunil on 2021-05-25 - १३:४२
  */
 @ApplicationScoped
-@ApplicationPath("/v1/covidupdates")
+@ApplicationPath("/v1")
 public class RestApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
-        classes.add(CovidUpdateResource.class);
+
+        classes.add(CovidUpdatesResource.class);
+        classes.add(UserResource.class);
+
+        classes.add(PingResource.class);
         classes.add(CorsFilter.class);
         classes.add(IllegalArgumentException.class);
         classes.add(AppExceptionMapper.class);

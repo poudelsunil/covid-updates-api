@@ -1,4 +1,4 @@
-package global.sunil.covidupdates.repositories.services.domains;
+package global.sunil.covidupdates.repositories.services.covid19.domains;
 
 import java.util.Objects;
 

@@ -16,26 +16,20 @@ import javax.ws.rs.core.Response;
  * @author Sunil on 2021-05-25 - १४:०६
  */
 @RequestScoped
-@Path("/")
+@Path("/covidupdates")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Named
-public class CovidUpdateResource {
+public class CovidUpdatesResource {
 
     CovidUpdatesRepository covidUpdatesRepository;
     GetCountryWiseCovidInfoRequestAdaptor getCountryWiseCovidInfoRequestAdaptor;
 
     @Inject
-    CovidUpdateResource(CovidUpdatesRepository covidUpdatesRepository,
-                        GetCountryWiseCovidInfoRequestAdaptor getCountryWiseCovidInfoRequestAdaptor){
+    CovidUpdatesResource(CovidUpdatesRepository covidUpdatesRepository,
+                         GetCountryWiseCovidInfoRequestAdaptor getCountryWiseCovidInfoRequestAdaptor){
         this.covidUpdatesRepository = covidUpdatesRepository;
         this.getCountryWiseCovidInfoRequestAdaptor = getCountryWiseCovidInfoRequestAdaptor;
-    }
-
-    @GET
-    @Path("ping")
-    public Response ping(){
-        return RestResponse.ok();
     }
 
     @GET

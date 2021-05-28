@@ -1,6 +1,4 @@
-package global.sunil.covidupdates.lib.services;
-
-import global.sunil.covidupdates.lib.services.ServiceObject;
+package global.sunil.covidupdates.lib.utils;
 
 import javax.json.JsonObject;
 

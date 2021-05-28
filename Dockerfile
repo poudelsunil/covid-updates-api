@@ -23,10 +23,13 @@ RUN apk add --no-cache redis sed bash busybox-suid && addgroup -S covidupdates &
 # Copy the binary built in the 1st stage
 COPY --from=build /app/target/covid-updates-api.jar /home/covidupdates/app/
 COPY --from=build /app/target/libs /home/covidupdates/app/libs
+COPY --from=build /app/target/classes/json /home/covidupdates/app/jsona
 RUN  chown -Rf covidupdates:covidupdates /home/covidupdates/app
 WORKDIR /home/covidupdates/app
 
 ENV COVID19_SERVICE_URL="https://api.covid19api.com"
+ENV SMTP_SERVER_USER_NAME="sunil15poudel@gmail.com"
+ENV SMTP_SERVER_PASSWORD="ieThee60-gmail"
 
 CMD ["java", "-jar", "covid-updates-api.jar"]
 

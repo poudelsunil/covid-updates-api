@@ -69,4 +69,62 @@ public class ExceptionManager extends AppException {
             }
         });
     }
+
+
+    public enum UserError implements ExceptionType {
+
+        EMAIL_SUBJECT_IS_MISSING("URS001", "Email subject is missing."),
+        MESSAGE_IS_MISSING("URS002", "Email body is missing."),
+        COULD_NOT_SEND_EMAIL("URS003", "Could not send email."),
+        COULD_NOT_FOUND_USERS("URS004", "Could not found users."),
+
+        EMAIL_IS_MISSING("URS005", "Email is missing."),
+        EMAIL_IS_INVALID("URS006", "Email is invalid."),
+        NAME_IS_MISSING("URS007", "Name is missing."),
+        COULD_NOT_ADD_USER("URS008", "Could not add user."),
+
+        ;
+        private final String code;
+        private final String description;
+
+        UserError(String code, String description) {
+            this.code = code;
+            this.description = description;
+        }
+
+        @Override
+        public String getCode() {
+            return this.code;
+        }
+
+        @Override
+        public String getDescription() {
+            return this.description;
+        }
+    }
+
+    public enum EmailSenderError implements ExceptionType {
+
+        SMTP_USER_NAME_IS_MISSING("EML001", "Smtp user name is missing."),
+        SMTP_USER_PASSWORD_IS_MISSING("EML002", "Smtp user password is missing."),
+
+        ;
+        private final String code;
+        private final String description;
+
+        EmailSenderError(String code, String description) {
+            this.code = code;
+            this.description = description;
+        }
+
+        @Override
+        public String getCode() {
+            return this.code;
+        }
+
+        @Override
+        public String getDescription() {
+            return this.description;
+        }
+    }
 }

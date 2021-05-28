@@ -4,8 +4,8 @@ import global.sunil.covidupdates.lib.mappers.AppException;
 import global.sunil.covidupdates.repositories.CovidUpdatesRepository;
 import global.sunil.covidupdates.repositories.ExceptionManager;
 import global.sunil.covidupdates.repositories.dtos.CountryInfo;
-import global.sunil.covidupdates.repositories.services.Covid19APIService;
-import global.sunil.covidupdates.repositories.services.domains.ServiceCountryInfo;
+import global.sunil.covidupdates.repositories.services.covid19.Covid19APIService;
+import global.sunil.covidupdates.repositories.services.covid19.domains.ServiceCountryInfo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -57,7 +57,4 @@ class CovidUpdateRepositoryImplGetCountriesTest {
         assertNotNull(countries);
         assertEquals(1, countries.size());
     }
-
-
-
 }

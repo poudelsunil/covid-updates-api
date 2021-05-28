@@ -6,9 +6,9 @@ import global.sunil.covidupdates.repositories.ExceptionManager;
 import global.sunil.covidupdates.repositories.dtos.CountryInfo;
 import global.sunil.covidupdates.repositories.dtos.CountryWiseCovidInfo;
 import global.sunil.covidupdates.repositories.dtos.GetCountryWiseCovidInfoRequest;
-import global.sunil.covidupdates.repositories.services.Covid19APIService;
-import global.sunil.covidupdates.repositories.services.domains.ServiceCountryInfo;
-import global.sunil.covidupdates.repositories.services.domains.ServiceCountryWiseCovidInfo;
+import global.sunil.covidupdates.repositories.services.covid19.Covid19APIService;
+import global.sunil.covidupdates.repositories.services.covid19.domains.ServiceCountryInfo;
+import global.sunil.covidupdates.repositories.services.covid19.domains.ServiceCountryWiseCovidInfo;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
  * @author Sunil on 2021-05-25 - १५:४१
  */
 @Named
-@Dependent
 public class CovidUpdateRepositoryImpl implements CovidUpdatesRepository {
 
     Covid19APIService covid19APIService;
@@ -94,7 +93,6 @@ public class CovidUpdateRepositoryImpl implements CovidUpdatesRepository {
 
             CountryWiseCovidInfo covidInfo = countryWiseCovidInfoWithoutRates.get(i);
             double confirmedIncrementRate = calculateIncrementRate(previousConfirmed, covidInfo.getConfirmed());
-            System.out.println( i+ " previousConfirmed "+previousConfirmed+" covidInfo.getConfirmed() "+covidInfo.getConfirmed()+" confirmedIncrementRate "+confirmedIncrementRate) ;
             previousConfirmed = covidInfo.getConfirmed();
             covidInfo.setConfirmedIncrementRate(confirmedIncrementRate);
             covidInfo.setDeathsRate(calculatePercentage(covidInfo.getConfirmed(), covidInfo.getDeaths()));

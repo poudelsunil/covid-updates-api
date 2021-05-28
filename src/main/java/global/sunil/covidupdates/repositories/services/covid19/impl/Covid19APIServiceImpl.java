@@ -1,4 +1,4 @@
-package global.sunil.covidupdates.repositories.services.impl;
+package global.sunil.covidupdates.repositories.services.covid19.impl;
 
 import global.sunil.covidupdates.lib.restclient.HttpClient;
 import global.sunil.covidupdates.lib.restclient.HttpClientRequest;
@@ -7,9 +7,9 @@ import global.sunil.covidupdates.lib.restclient.HttpClientUtils;
 import global.sunil.covidupdates.lib.utils.HelperUtils;
 import global.sunil.covidupdates.lib.utils.Jsons;
 import global.sunil.covidupdates.repositories.ExceptionManager;
-import global.sunil.covidupdates.repositories.services.Covid19APIService;
-import global.sunil.covidupdates.repositories.services.domains.ServiceCountryInfo;
-import global.sunil.covidupdates.repositories.services.domains.ServiceCountryWiseCovidInfo;
+import global.sunil.covidupdates.repositories.services.covid19.Covid19APIService;
+import global.sunil.covidupdates.repositories.services.covid19.domains.ServiceCountryInfo;
+import global.sunil.covidupdates.repositories.services.covid19.domains.ServiceCountryWiseCovidInfo;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.Dependent;
