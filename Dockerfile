@@ -28,8 +28,8 @@ RUN  chown -Rf covidupdates:covidupdates /home/covidupdates/app
 WORKDIR /home/covidupdates/app
 
 ENV COVID19_SERVICE_URL="https://api.covid19api.com"
-ENV SMTP_SERVER_USER_NAME="sunil15poudel@gmail.com"
-ENV SMTP_SERVER_PASSWORD="********"
+ENV SMTP_SERVER_USER_NAME="tm0766192@gmail.com"
+ENV SMTP_SERVER_PASSWORD="Test@123"
 
 CMD ["java", "-jar", "covid-updates-api.jar"]
 
