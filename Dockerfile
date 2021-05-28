@@ -29,7 +29,7 @@ WORKDIR /home/covidupdates/app
 
 ENV COVID19_SERVICE_URL="https://api.covid19api.com"
 ENV SMTP_SERVER_USER_NAME="sunil15poudel@gmail.com"
-ENV SMTP_SERVER_PASSWORD="ieThee60-gmail"
+ENV SMTP_SERVER_PASSWORD="********"
 
 CMD ["java", "-jar", "covid-updates-api.jar"]
 
