@@ -381,7 +381,7 @@ There are four high level packages
 - CovidUpdatesRepository | UserRepository
   - This file contains main usecase of our file
 - Covid19APIService
-  - This file contains a function to get countries list and country wise covid19 info from [external public API](https://api.covid19api.com/dayone/country/{countryCode}).
+  - This file contains a function to get countries list and country wise covid19 info from [external public API](https://documenter.getpostman.com/view/10808728/SzS8rjbc#00030720-fae3-4c72-8aea-ad01ba17adf8).
 - MailSender
   - This file contains utils functions for HTTP API call.
 - UserDao
