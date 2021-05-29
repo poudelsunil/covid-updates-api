@@ -61,11 +61,11 @@
 
 #### Response parameters ####
 
-| Name  |Description |Possible values |
-| ------------- | ------------- | -----------|
-| code  | 0 if success response  |  |
-| message  | SUCCESS |  |
-| data  | List of CountryInfo |  |
+| Name  |Description |
+| ------------- | ------------- | 
+| code  | 0 if success response  |
+| message  | SUCCESS |  
+| data  | List of CountryInfo |  
 
 ##### CountryInfo parameters #####
 | Name  |Description |Type |
@@ -126,11 +126,11 @@
 ```
 #### Response parameters ####
 
-| Name  |Description |Possible values |
-| ------------- | ------------- | -----------|
-| code  | 0 if success response  |  |
-| message  | SUCCESS |  |
-| data  | List of DailyCovidReportItem |  |
+| Name  |Description |
+| ------------- | ------------- |
+| code  | 0 if success response  |
+| message  | SUCCESS |
+| data  | List of DailyCovidReportItem |
 
 ##### DailyCovidReportItem parameters #####
 | Name  |Description |Type |
@@ -220,12 +220,12 @@
 
 #### Response parameters ####
 
-| Name  |Description |Possible values |
-| ------------- | ------------- | -----------|
-| code  | 0 if success response  |  |
-| message  | SUCCESS |  |
-| data.usersWithValidEmail  | List of UserBasicInfo for whom we send email successfully |  |
-| data.usersWithInvalidEmail  | List of UserBasicInfo who have invalid emails |  |
+| Name  |Description |
+| ------------- | ------------- | 
+| code  | 0 if success response  |
+| message  | SUCCESS | 
+| data.usersWithValidEmail  | List of UserBasicInfo for whom we send email successfully | 
+| data.usersWithInvalidEmail  | List of UserBasicInfo who have invalid emails | 
 
 ##### UserBasicInfo parameters #####
 | Name  |Description |Type |
@@ -281,11 +281,11 @@
 ```
 #### Response parameters ####
 
-| Name  |Description |Possible values |
-| ------------- | ------------- | -----------|
-| code  | 0 if success response  |  |
-| message  | SUCCESS |  |
-| data  | List of UserInfo | |
+| Name  |Description |
+| ------------- | ------------- | 
+| code  | 0 if success response  |
+| message  | SUCCESS |  
+| data  | List of UserInfo | 
 
 ##### UserInfo parameters #####
 | Name  |Description |Type |
@@ -338,11 +338,11 @@
 ```
 #### Response parameters ####
 
-| Name  |Description |Possible values |
-| ------------- | ------------- | -----------|
-| code  | 0 if success response  |  |
-| message  | SUCCESS |  |
-| data  | UserInfo | |
+| Name  |Description |
+| ------------- | ------------- | 
+| code  | 0 if success response  |
+| message  | SUCCESS | 
+| data  | UserInfo | 
 
 ##### UserInfo parameters #####
 | Name  |Description |Type |
