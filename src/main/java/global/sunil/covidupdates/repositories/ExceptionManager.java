@@ -17,7 +17,7 @@ public class ExceptionManager extends AppException {
 
     public enum CovidUpdatesError implements ExceptionType {
         COULD_NOT_GET_COUNTRIES("CVD001", "Could not get countries."),
-        COULD_NOT_GET_COUNTRY_WISE_COVID_INFO("CVD002", "Could not get country wise covid info."),
+        COULD_NOT_GET_COUNTRY_WISE_COVID_INFO("CVD002", "Could not get country wise covid info from external service."),
 
         COUNTRY_ISO2_IS_MISSING("CVD003", "Country iso2 is missing."),
         COUNTRY_ISO2_IS_INVALID("CVD003", "Country iso2 is invalid."),
@@ -74,7 +74,7 @@ public class ExceptionManager extends AppException {
     public enum UserError implements ExceptionType {
 
         EMAIL_SUBJECT_IS_MISSING("URS001", "Email subject is missing."),
-        MESSAGE_IS_MISSING("URS002", "Email body is missing."),
+        MESSAGE_IS_MISSING("URS002", "Email body content is missing."),
         COULD_NOT_SEND_EMAIL("URS003", "Could not send email."),
         COULD_NOT_FOUND_USERS("URS004", "Could not found users."),
 
@@ -82,6 +82,10 @@ public class ExceptionManager extends AppException {
         EMAIL_IS_INVALID("URS006", "Email is invalid."),
         NAME_IS_MISSING("URS007", "Name is missing."),
         COULD_NOT_ADD_USER("URS008", "Could not add user."),
+
+        COUNT_EXCEEDED_MAX_LIMIT("URS009", "Count exceeded max limit."),
+        EMAIL_SUBJECT_EXCEEDED_MAX_LENGTH_LIMIT("URS010", "Email subject exceeded max length limit."),
+        MESSAGE_EXCEEDED_MAX_LENGTH_LIMIT("URS011", "Message exceeded max length limit."),
 
         ;
         private final String code;

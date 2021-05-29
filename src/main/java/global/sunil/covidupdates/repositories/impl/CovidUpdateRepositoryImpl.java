@@ -73,6 +73,7 @@ public class CovidUpdateRepositoryImpl implements CovidUpdatesRepository {
         List<CountryWiseCovidInfo> countryWiseCovidInfoWithoutRates = covidInfoFromService.stream()
                 .map(s -> new CountryWiseCovidInfo(
                         s.getCountry(),
+                        s.getCountryCode(),
                         s.getConfirmed(),
                         s.getDeaths(),
                         s.getRecovered(),

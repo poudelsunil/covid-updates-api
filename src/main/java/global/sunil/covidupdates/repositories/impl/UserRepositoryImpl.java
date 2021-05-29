@@ -134,6 +134,22 @@ public class UserRepositoryImpl implements UserRepository {
         if (HelperUtils.isBlankOrNull(request.getMessage())) {
             ExceptionManager.throwException(ExceptionManager.UserError.MESSAGE_IS_MISSING);
         }
+
+        if(request.getCount() != null && AppConstraints.MAX_EMAIL_RECIPIENTS_NUMBERS < request.getCount()){
+            ExceptionManager.throwException(ExceptionManager.UserError.COUNT_EXCEEDED_MAX_LIMIT);
+        }
+
+        if(request.getCount() != null && AppConstraints.MAX_EMAIL_RECIPIENTS_NUMBERS < request.getCount()){
+            ExceptionManager.throwException(ExceptionManager.UserError.COUNT_EXCEEDED_MAX_LIMIT);
+        }
+
+        if(!HelperUtils.isBlankOrNull(request.getSubject()) && AppConstraints.MAX_EMAIL_SUBJECT_LENGTH < request.getSubject().length()){
+            ExceptionManager.throwException(ExceptionManager.UserError.EMAIL_SUBJECT_EXCEEDED_MAX_LENGTH_LIMIT);
+        }
+
+        if(!HelperUtils.isBlankOrNull(request.getMessage()) && AppConstraints.MAX_EMAIL_BODY_LENGTH < request.getMessage().length()){
+            ExceptionManager.throwException(ExceptionManager.UserError.MESSAGE_EXCEEDED_MAX_LENGTH_LIMIT);
+        }
     }
 
     UserFilterCriteria prepareUserFilterCriteria(SendEmailRequest request){

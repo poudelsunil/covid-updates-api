@@ -8,6 +8,7 @@ import java.util.Objects;
 public class CountryWiseCovidInfo {
 
     String countryName;
+    String countryIso2;
     int confirmed;
     int deaths;
     int recovered;
@@ -18,22 +19,24 @@ public class CountryWiseCovidInfo {
     double recoveredRate;
     double activeRate;
 
-    String Date;
+    String date;
 
-    public CountryWiseCovidInfo(String countryName, int confirmed, int deaths, int recovered, int active, String date) {
+    public CountryWiseCovidInfo(String countryName, String countryIso2, int confirmed, int deaths, int recovered, int active, String date) {
         this.countryName = countryName;
+        this.countryIso2 = countryIso2;
         this.confirmed = confirmed;
         this.deaths = deaths;
         this.recovered = recovered;
         this.active = active;
-        Date = date;
+        this.date = date;
     }
 
-    public CountryWiseCovidInfo(String countryName, int confirmed, int deaths, int recovered,
+    public CountryWiseCovidInfo(String countryName, String countryIso2, int confirmed, int deaths, int recovered,
                                 int active, double confirmedIncrementRate,
                                 double deathsRate, double recoveredRate,
                                 double activeRate, String date) {
         this.countryName = countryName;
+        this.countryIso2 = countryIso2;
         this.confirmed = confirmed;
         this.deaths = deaths;
         this.recovered = recovered;
@@ -42,7 +45,7 @@ public class CountryWiseCovidInfo {
         this.deathsRate = deathsRate;
         this.recoveredRate = recoveredRate;
         this.activeRate = activeRate;
-        Date = date;
+        this.date = date;
     }
 
     public String getCountryName() {
@@ -51,6 +54,14 @@ public class CountryWiseCovidInfo {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public String getCountryIso2() {
+        return countryIso2;
+    }
+
+    public void setCountryIso2(String countryIso2) {
+        this.countryIso2 = countryIso2;
     }
 
     public int getConfirmed() {
@@ -118,11 +129,11 @@ public class CountryWiseCovidInfo {
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     @Override
@@ -130,11 +141,11 @@ public class CountryWiseCovidInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CountryWiseCovidInfo that = (CountryWiseCovidInfo) o;
-        return confirmed == that.confirmed && deaths == that.deaths && recovered == that.recovered && active == that.active && Double.compare(that.confirmedIncrementRate, confirmedIncrementRate) == 0 && Double.compare(that.deathsRate, deathsRate) == 0 && Double.compare(that.recoveredRate, recoveredRate) == 0 && Double.compare(that.activeRate, activeRate) == 0 && Objects.equals(countryName, that.countryName) && Objects.equals(Date, that.Date);
+        return confirmed == that.confirmed && deaths == that.deaths && recovered == that.recovered && active == that.active && Double.compare(that.confirmedIncrementRate, confirmedIncrementRate) == 0 && Double.compare(that.deathsRate, deathsRate) == 0 && Double.compare(that.recoveredRate, recoveredRate) == 0 && Double.compare(that.activeRate, activeRate) == 0 && Objects.equals(countryName, that.countryName) && Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(countryName, confirmed, deaths, recovered, active, confirmedIncrementRate, deathsRate, recoveredRate, activeRate, Date);
+        return Objects.hash(countryName, confirmed, deaths, recovered, active, confirmedIncrementRate, deathsRate, recoveredRate, activeRate, date);
     }
 }

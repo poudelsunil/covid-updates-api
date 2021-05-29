@@ -2,8 +2,10 @@ package global.sunil.covidupdates.repositories.impl;
 
 import global.sunil.covidupdates.lib.mailclient.MailSender;
 import global.sunil.covidupdates.lib.mappers.AppException;
+import global.sunil.covidupdates.lib.utils.HelperUtils;
 import global.sunil.covidupdates.repositories.ExceptionManager;
 import global.sunil.covidupdates.repositories.UserRepository;
+import global.sunil.covidupdates.repositories.constraints.AppConstraints;
 import global.sunil.covidupdates.repositories.dao.UserDao;
 import global.sunil.covidupdates.repositories.dao.entites.UserEntity;
 import global.sunil.covidupdates.repositories.dao.entites.UserFilterCriteria;
@@ -36,7 +38,7 @@ class UserRepositoryImplEmailUserTest {
         UserDao userDao = Mockito.mock(UserDao.class);
         MailSender mailSender = Mockito.mock(MailSender.class);
         UserFilterCriteria userFilterCriteriaWithNoRecord = new UserFilterCriteria();
-        userFilterCriteriaWithNoRecord.setSize(100);
+        userFilterCriteriaWithNoRecord.setSize(10);
         Mockito.when(userDao.search(userFilterCriteriaWithNoRecord)).thenReturn(Collections.emptyList());
 
         UserFilterCriteria userFilterCriteriaWithTwoRecord = new UserFilterCriteria();
@@ -110,13 +112,58 @@ class UserRepositoryImplEmailUserTest {
     }
 
     @Test
+    @DisplayName("Should throw count exceeded max limit exception")
+    void shouldThrowCountExceededMaxLimit() {
+
+        SendEmailRequest sendEmailRequest = new SendEmailRequest();
+        sendEmailRequest.setSubject("Hi");
+        sendEmailRequest.setMessage("How are you?");
+        sendEmailRequest.setCount(AppConstraints.MAX_EMAIL_RECIPIENTS_NUMBERS+1);
+        AppException exception =
+                assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
+        Assertions.assertEquals(
+                ExceptionManager.UserError.COUNT_EXCEEDED_MAX_LIMIT.getDescription(),
+                exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should throw email subject exceeded max limit exception")
+    void shouldThrowSubjectExceededMaxLimit() {
+
+        SendEmailRequest sendEmailRequest = new SendEmailRequest();
+        sendEmailRequest.setSubject(HelperUtils.getRandomString(AppConstraints.MAX_EMAIL_SUBJECT_LENGTH+1));
+        sendEmailRequest.setMessage("How are you?");
+        sendEmailRequest.setCount(2);
+        AppException exception =
+                assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
+        Assertions.assertEquals(
+                ExceptionManager.UserError.EMAIL_SUBJECT_EXCEEDED_MAX_LENGTH_LIMIT.getDescription(),
+                exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should throw email message exceeded max limit exception")
+    void shouldThrowMessageExceededMaxLimit() {
+
+        SendEmailRequest sendEmailRequest = new SendEmailRequest();
+        sendEmailRequest.setSubject("Hi");
+        sendEmailRequest.setMessage(HelperUtils.getRandomString(AppConstraints.MAX_EMAIL_BODY_LENGTH+1));
+        sendEmailRequest.setCount(2);
+        AppException exception =
+                assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
+        Assertions.assertEquals(
+                ExceptionManager.UserError.MESSAGE_EXCEEDED_MAX_LENGTH_LIMIT.getDescription(),
+                exception.getMessage());
+    }
+
+    @Test
     @DisplayName("Should throw Could not found any users exception")
     void shouldThrowCouldNotFoundUsers() {
 
         SendEmailRequest sendEmailRequest = new SendEmailRequest();
         sendEmailRequest.setSubject("Hi");
         sendEmailRequest.setMessage("How are you?");
-        sendEmailRequest.setCount(100);
+        sendEmailRequest.setCount(10);
         AppException exception =
                 assertThrows(AppException.class, () -> userRepository.sendEmails(sendEmailRequest));
         Assertions.assertEquals(
