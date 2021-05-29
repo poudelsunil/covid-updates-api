@@ -12,7 +12,10 @@
     2. docker run -p 8080:8080 covidupdates_image
 
   The first command will build a docker image that consists of jar file of the project. The
-  second command will run the image and it can be accessed locally in port 8080. localhost:8080
+  second command will run the image and it can be accessed locally in port 8080. 
+  
+## HostUrl
+    localhost:8080
 
 
 # APIs #
@@ -21,9 +24,9 @@
 - This API will provide available countries list. Country ISO2 field will be required to fetch covid-19 report.
 
 ### Resource URL ###
-```
-/v1/covidupdates/countries
-```
+
+[HOST_URL](#HostUrl)/v1/covidupdates/countries
+
 ### Method ####
 
 ```HTTP GET```
@@ -74,9 +77,9 @@
 - This API will return day wise covid-19 reports for a country from the first recorded case.
 
 ### Resource URL ###
-```
-/v1/covidupdates/country/{countryISO2}
-```
+
+[HOST_URL](#HostUrl)/v1/covidupdates/country/{countryISO2}
+
 ### Method ####
 
 ```HTTP GET```
@@ -163,9 +166,9 @@
 - This API will send email to system users who have valid emails.
 
 ### Resource URL ###
-```
-/v1/users/email
-```
+
+[HOST_URL](#HostUrl)/v1/users/email
+
 ### Method ####
 
 ```HTTP POST```
@@ -246,9 +249,9 @@
 - This API will provide all users registered in system.
 
 ### Resource URL ###
-```
-/v1/users
-```
+
+[HOST_URL](#HostUrl)/v1/users
+
 ### Method ####
 
 ```HTTP GET```
@@ -296,9 +299,9 @@
 - This API will add a user to system.
 
 ### Resource URL ###
-```
-/v1/users/
-```
+
+[HOST_URL](#HostUrl)/v1/users/
+
 ### Method ####
 
 ```HTTP POST```
