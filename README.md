@@ -359,14 +359,6 @@
 | URS008  | Could not add user.  |
 
 
-## Description ##
-
-- Input Data is validated in the beginning.
-- Used HttpClient from JavaEE to perform external API call.
-- Used JavaMail API for sending emails.
-- Used JUnit and Mockito for unit test.
-- 100% test coverage is maintained for all the code that consists of business logic. 
-
 ## Packages ##
 
 There are four high level packages
@@ -382,7 +374,7 @@ There are four high level packages
       6. dao.entites: Java Object that will match to the database table schema.
 
 
-## Code Description
+## Code Description ##
 
 - RestApplication | PingResource | CovidUpdatesResource | UserResource
   -  Rest endpoint is located in these files.
@@ -394,3 +386,12 @@ There are four high level packages
   - This file contains utils functions for HTTP API call.
 - UserDao
   - This file contains functions to perform read and write to the user database.
+
+
+## Other Description About APIs ##
+
+- Input Data is validated in the beginning.
+- Used HttpClient from JavaEE to perform external API call.
+- Used JavaMail API for sending emails.
+- Used JUnit and Mockito for unit test.
+- 100% test coverage is maintained for all the code that consists of business logic. 
